@@ -10,6 +10,7 @@ namespace SGHWeb.Models
     {
         [Required(ErrorMessage = "Debe ingresar el Usuario")]
         [Display(Name="Usuario")]
+        [StringLength(20)]
         public string username { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar la Contraseña")]

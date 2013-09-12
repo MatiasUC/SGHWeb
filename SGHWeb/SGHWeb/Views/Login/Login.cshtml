@@ -13,14 +13,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-
-    <style>
-        .placeholder { color: #aaa; }
-        #p { background: lime; }
-    </style>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -42,34 +36,34 @@
     <div class="container">
         <div class="form-login">
             <div class="col-md-7">
-                <img alt="Reservas" src="~/Images/reserva2.jpg" class="img-rounded" />
+                
             </div>
             <div class="col-md-5">
-
+                <div class="row">&nbsp;</div>
                 @using (Html.BeginForm("", "Login", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, id = "formLogin", @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
                     
-
                     <fieldset class="control-group">
                         <legend>Login - Inicio de Sesión</legend>
                         <div class="form-group">
                             @Html.LabelFor(m => m.username, new { @class = "col-md-3 control-label" })
                             <div class="col-md-8">
                                 @Html.TextBoxFor(m => m.username, new { placeholder = "Usuario", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.username, null, new { @class = "textoError" })
+                                @Html.ValidationMessageFor(m => m.username)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.password, new { @class = "col-md-3 control-label" })
                             <div class="col-md-8">
-                                @Html.PasswordFor(m => m.password, new { placeholder = "Password", @class = "form-control" } )
-                                @Html.ValidationMessageFor(m => m.password, null, new { @class = "textoError" })
+                                @Html.PasswordFor(m => m.password, new { placeholder = "Contraseña", @class = "form-control" } )
+                                @Html.ValidationMessageFor(m => m.password)
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-2">
-                                <button type="submit" class="btn btn-primary btn-large" title="Iniciar Sesión">Ingresar</button>
+                                <button type="submit" id="btnLogin" class="btn btn-success btn-large" title="Iniciar Sesión">Ingresar</button>
                             </div>
                             <div class="col-md-offset-1 col-md-3">
                                 <p class="help-inline">
@@ -98,27 +92,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/placeholder")
     @Scripts.Render("~/bundles/jqueryval")
-
-    <script>
-        $.fn.hide = function () { return this; }
-        $(function () {
-            // Invoke the plugin
-            $('input').placeholder();
-            // That’s it, really.
-            // Now display a message if the browser supports placeholder natively
-            var html;
-            if ($.fn.placeholder.input && $.fn.placeholder.textarea) {
-                html = '<strong>Your current browser natively supports <code>placeholder</code> for <code>input</code> and <code>textarea</code> elements.</strong> The plugin won’t run in this case, since it’s not needed. If you want to test the plugin, use an older browser ;)';
-            } else if ($.fn.placeholder.input) {
-                html = '<strong>Your current browser natively supports <code>placeholder</code> for <code>input</code> elements, but not for <code>textarea</code> elements.</strong> The plugin will only do its thang on the <code>textarea</code>s.';
-            }
-            if (html) {
-                $('<p class="note">' + html + '</p>').insertAfter('form');
-            }
-        });
-    </script>
 
 </body>
 
